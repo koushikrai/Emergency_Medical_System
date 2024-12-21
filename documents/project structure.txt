@@ -1,0 +1,127 @@
+Certainly! Below is an outline of how you can organize your files and directories in **VS Code** for your Emergency Medical System project. This structure separates concerns for better maintainability and scalability.
+
+---
+
+### **Project Directory Structure**
+
+```
+emergency-medical-system/
+├── backend/                     # Backend folder
+│   ├── controllers/             # Business logic for handling routes
+│   │   ├── emergencyController.js
+│   ├── models/                  # Database models/schema
+│   │   ├── Hospital.js
+│   ├── routes/                  # API route definitions
+│   │   ├── emergencyRoutes.js
+│   ├── services/                # External API integrations
+│   │   ├── googleMapsService.js
+│   ├── app.js                   # Express app setup
+│   ├── server.js                # Backend server entry point
+│   ├── .env                     # Environment variables (API keys, DB URL)
+│   ├── package.json             # Backend dependencies
+│   ├── package-lock.json
+└── frontend/                    # Frontend folder
+    ├── public/                  # Static assets (images, favicon, etc.)
+    ├── src/                     # Source code
+    │   ├── components/          # React components
+    │   │   ├── EmergencyForm.jsx
+    │   │   ├── MapView.jsx
+    │   ├── pages/               # Next.js pages
+    │   │   ├── index.js         # Home page
+    │   │   ├── emergency.js     # Emergency details page
+    │   ├── styles/              # CSS or SCSS files
+    │   │   ├── globals.css
+    │   ├── utils/               # Utility functions/helpers
+    │   │   ├── api.js           # Axios or fetch functions for API calls
+    │   ├── App.js               # Main React app file
+    │   ├── index.js             # Entry point for React/Next.js
+    ├── package.json             # Frontend dependencies
+    ├── package-lock.json
+```
+
+---
+
+### **Description of Key Folders and Files**
+
+#### **Backend Folder**
+- **`controllers/`**:
+  - Contains logic for handling backend requests and responses.
+  - Example: `emergencyController.js` processes form data and interacts with APIs like Google Maps.
+  
+- **`models/`**:
+  - Defines database schemas, such as hospital data (`Hospital.js`).
+
+- **`routes/`**:
+  - Contains route definitions for API endpoints, e.g., `/api/emergency`.
+
+- **`services/`**:
+  - Contains reusable functions for external services (e.g., geocoding, directions API).
+
+- **`app.js`**:
+  - Configures middleware, routes, and error handling for the backend.
+
+- **`server.js`**:
+  - Starts the backend server, connects to the database, and runs the app.
+
+- **`.env`**:
+  - Stores sensitive credentials like API keys and database URLs.
+
+---
+
+#### **Frontend Folder**
+- **`public/`**:
+  - Static files accessible without React rendering (e.g., favicon, images).
+
+- **`src/components/`**:
+  - Contains reusable React components like `EmergencyForm` for user input and `MapView` to display Google Maps.
+
+- **`src/pages/`**:
+  - Contains Next.js page components, with routes automatically generated from filenames (e.g., `/emergency`).
+
+- **`src/styles/`**:
+  - Global and component-specific styles (CSS/SCSS files).
+
+- **`src/utils/`**:
+  - Utility functions for frontend tasks like API calls (e.g., `api.js` for Axios functions).
+
+- **`App.js`**:
+  - Main entry file for React, managing routing and global state (if needed).
+
+- **`index.js`**:
+  - Next.js entry file, connecting the frontend to the backend API.
+
+---
+
+### **Run Instructions**
+
+#### **Backend**
+1. Navigate to the `backend/` folder:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the server:
+   ```bash
+   npm run start
+   ```
+
+#### **Frontend**
+1. Navigate to the `frontend/` folder:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the Next.js development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+Would you like help setting up specific files (e.g., `server.js`, `api.js`, or `EmergencyForm.jsx`)? Or should we start integrating backend services like Google Maps?

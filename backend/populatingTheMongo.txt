@@ -1,0 +1,51 @@
+#Creating a Hospital model:
+
+const mongoose = require('mongoose');
+
+const hospitalSchema = new mongoose.Schema({
+    name: String,
+    address: String,
+    location: {
+        lat: Number,
+        lng: Number,
+    },
+    phone: String,
+});
+
+module.exports = mongoose.model('Hospital', hospitalSchema);
+
+
+#Add a script to populate the database:
+
+const mongoose = require('mongoose');
+const Hospital = require('./models/Hospital');
+const hospitals = [
+    {
+        name: 'City Hospital',
+        address: '123 Main St, City',
+        location: { lat: 37.7749, lng: -122.4194 },
+        phone: '123-456-7890',
+    },
+    // Add more hospital data
+];
+
+mongoose.connect('mongodb://localhost:27017/emergency_system', { useNewUrlParser: true })
+    .then(async () => {
+        await Hospital.insertMany(hospitals);
+        console.log('Hospitals added successfully');
+        mongoose.connection.close();
+    })
+    .catch(err => console.error(err));
+
+
+
+Running the script IN bash to populate the database:
+
+node populateHospitals.js
+
+OR
+
+Using Live API Calls
+
+Using the Places API in findNearbyHospitals to dynamically fetch hospital data based on the emergency location.
+This avoids the need for a pre-populated database but relies on the live API for data.

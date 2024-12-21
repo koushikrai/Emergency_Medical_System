@@ -1,0 +1,32 @@
+emergency-medical-system/
+├── backend/                     # Backend folder
+│   ├── controllers/             # Business logic for handling routes
+│   │   ├── emergencyController.js
+│   ├── models/                  # Database models/schema
+│   │   ├── Hospital.js
+│   ├── routes/                  # API route definitions
+│   │   ├── emergencyRoutes.js
+│   ├── services/                # External API integrations
+│   │   ├── googleMapsService.js
+│   ├── app.js                   # Express app setup
+│   ├── server.js                # Backend server entry point
+│   ├── .env                     # Environment variables (API keys, DB URL)
+│   ├── package.json             # Backend dependencies
+│   ├── package-lock.json
+└── frontend/                    # Frontend folder
+    ├── public/                  # Static assets (images, favicon, etc.)
+    ├── src/                     # Source code
+    │   ├── components/          # React components
+    │   │   ├── EmergencyForm.jsx
+    │   │   ├── MapView.jsx
+    │   ├── pages/               # Next.js pages
+    │   │   ├── index.js         # Home page
+    │   │   ├── emergency.js     # Emergency details page
+    │   ├── styles/              # CSS or SCSS files
+    │   │   ├── globals.css
+    │   ├── utils/               # Utility functions/helpers
+    │   │   ├── api.js           # Axios or fetch functions for API calls
+    │   ├── App.js               # Main React app file
+    │   ├── index.js             # Entry point for React/Next.js
+    ├── package.json             # Frontend dependencies
+    ├── package-lock.json

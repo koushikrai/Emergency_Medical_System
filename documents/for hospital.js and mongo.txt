@@ -1,0 +1,103 @@
+Here’s the code for the `Hospital.js` file, which defines the schema for hospital data in your MongoDB database:
+
+---
+
+### **`models/Hospital.js`**
+```javascript
+const mongoose = require('mongoose');
+
+// Define the schema for hospitals
+const hospitalSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true, // Hospital name is mandatory
+    },
+    address: {
+        type: String,
+        required: true, // Address is mandatory
+    },
+    location: {
+        lat: {
+            type: Number,
+            required: true, // Latitude is mandatory
+        },
+        lng: {
+            type: Number,
+            required: true, // Longitude is mandatory
+        },
+    },
+    phone: {
+        type: String, // Optional: Phone number for the hospital
+    },
+    services: {
+        type: [String], // Optional: Array of services provided by the hospital
+        default: [],
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now, // Automatically set the timestamp for when the hospital is added
+    },
+});
+
+// Create and export the model
+const Hospital = mongoose.model('Hospital', hospitalSchema);
+
+module.exports = Hospital;
+```
+
+---
+
+### **Key Fields in the Schema**
+1. **`name`**:
+   - Name of the hospital (required).
+   
+2. **`address`**:
+   - Full address of the hospital (required).
+   
+3. **`location`**:
+   - `lat`: Latitude of the hospital's location (required).
+   - `lng`: Longitude of the hospital's location (required).
+
+4. **`phone`**:
+   - Phone number for the hospital (optional).
+
+5. **`services`**:
+   - An array of strings listing the services provided by the hospital (e.g., "Emergency", "Cardiology").
+
+6. **`createdAt`**:
+   - Timestamp indicating when the hospital record was added (default: current time).
+
+---
+
+### **Usage in Backend**
+1. **Import the Model**:
+   ```javascript
+   const Hospital = require('./models/Hospital');
+   ```
+
+2. **Example: Adding a Hospital**:
+   ```javascript
+   const newHospital = new Hospital({
+       name: 'City Hospital',
+       address: '123 Main Street, Cityville',
+       location: { lat: 37.7749, lng: -122.4194 },
+       phone: '123-456-7890',
+       services: ['Emergency', 'Pediatrics'],
+   });
+
+   await newHospital.save();
+   console.log('Hospital added:', newHospital);
+   ```
+
+3. **Example: Fetching Hospitals**:
+   ```javascript
+   const hospitals = await Hospital.find();
+   console.log('Hospitals:', hospitals);
+   ```
+
+---
+
+### **Populating the Database**
+You can use this schema to pre-fill your MongoDB database with hospital data (see the earlier `populateHospitals.js` script example). This will allow your backend to use pre-stored hospital data for faster responses instead of relying solely on live API calls.
+
+Let me know if you’d like further assistance! 🚀
