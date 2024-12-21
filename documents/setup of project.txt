@@ -1,0 +1,227 @@
+Got it! Let's first set up the project structure and essential files. I'll outline the steps to create the basic foundation for both the **frontend** and **backend**.
+
+---
+
+### **Step 1: Set Up Project Folder**
+1. Create a folder for your project, e.g., `emergency-medical-system`.
+2. Navigate into the folder:
+   ```bash
+   mkdir emergency-medical-system && cd emergency-medical-system
+   ```
+
+---
+
+### **Step 2: Initialize Backend**
+1. Create a folder for the backend:
+   ```bash
+   mkdir backend && cd backend
+   ```
+2. Initialize the backend with `npm`:
+   ```bash
+   npm init -y
+   ```
+3. Install dependencies:
+   ```bash
+   npm install express dotenv axios cors mongoose
+   npm install --save-dev nodemon
+   ```
+   - **Express**: Web framework for building APIs.
+   - **dotenv**: Manage environment variables.
+   - **axios**: Make HTTP requests to external APIs (e.g., Google Maps).
+   - **cors**: Allow cross-origin requests.
+   - **mongoose**: Database connection for MongoDB.
+   - **nodemon**: Auto-restart server during development.
+
+4. Create the following files:
+   - `server.js`: Entry point for the backend server.
+   - `app.js`: Configure middleware and routes.
+   - `.env`: Store environment variables (e.g., API keys).
+
+#### Example File Structure:
+```
+backend/
+├── controllers/
+├── models/
+├── routes/
+├── services/
+├── app.js
+├── server.js
+├── .env
+├── package.json
+```
+
+#### Basic Code Templates:
+- **`server.js`**:
+   ```javascript
+   const app = require('./app');
+   const mongoose = require('mongoose');
+   require('dotenv').config();
+
+   const PORT = process.env.PORT || 3001;
+
+   mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+       .then(() => {
+           console.log('Connected to MongoDB');
+           app.listen(PORT, () => {
+               console.log(`Server running on port ${PORT}`);
+           });
+       })
+       .catch(err => console.error('MongoDB connection error:', err));
+   ```
+
+- **`app.js`**:
+   ```javascript
+   const express = require('express');
+   const cors = require('cors');
+
+   const app = express();
+
+   app.use(cors());
+   app.use(express.json());
+
+   // Routes
+   app.use('/api/emergency', require('./routes/emergencyRoutes'));
+
+   // Error handling
+   app.use((err, req, res, next) => {
+       console.error(err.stack);
+       res.status(500).send('Something went wrong!');
+   });
+
+   module.exports = app;
+   ```
+
+- **`.env`**:
+   ```
+   PORT=3001
+   MONGO_URI=mongodb://localhost:27017/emergency_system
+   GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+   ```
+
+---
+
+### **Step 3: Initialize Frontend**
+1. Go back to the main directory:
+   ```bash
+   cd ..
+   ```
+2. Create a folder for the frontend:
+   ```bash
+   mkdir frontend && cd frontend
+   ```
+3. Set up a Next.js project:
+   ```bash
+   npx create-next-app .
+   ```
+   - When prompted, accept the defaults or customize as needed.
+
+4. Install dependencies:
+   ```bash
+   npm install axios react-google-maps/api
+   ```
+   - **axios**: Make HTTP requests to your backend.
+   - **react-google-maps/api**: Embed Google Maps in your React components.
+
+5. Organize your frontend folder structure:
+   ```
+   frontend/
+   ├── public/
+   ├── src/
+       ├── components/
+           ├── EmergencyForm.jsx
+           ├── MapView.jsx
+       ├── pages/
+           ├── index.js
+           ├── emergency.js
+       ├── styles/
+           ├── globals.css
+       ├── utils/
+           ├── api.js
+   ├── package.json
+   ```
+
+#### Example File Templates:
+- **`pages/index.js`**:
+   ```javascript
+   import EmergencyForm from '../components/EmergencyForm';
+
+   export default function Home() {
+       return (
+           <div>
+               <h1>Emergency Medical System</h1>
+               <EmergencyForm />
+           </div>
+       );
+   }
+   ```
+
+- **`components/EmergencyForm.jsx`**:
+   ```javascript
+   import { useState } from 'react';
+   import axios from 'axios';
+
+   export default function EmergencyForm() {
+       const [formData, setFormData] = useState({ address: '', details: '' });
+
+       const handleSubmit = async (e) => {
+           e.preventDefault();
+           try {
+               const response = await axios.post('http://localhost:3001/api/emergency', formData);
+               console.log('Response:', response.data);
+           } catch (err) {
+               console.error('Error submitting emergency:', err);
+           }
+       };
+
+       return (
+           <form onSubmit={handleSubmit}>
+               <input
+                   type="text"
+                   placeholder="Enter address"
+                   value={formData.address}
+                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+               />
+               <textarea
+                   placeholder="Enter emergency details"
+                   value={formData.details}
+                   onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+               ></textarea>
+               <button type="submit">Submit Emergency</button>
+           </form>
+       );
+   }
+   ```
+
+- **`utils/api.js`**:
+   ```javascript
+   import axios from 'axios';
+
+   const api = axios.create({
+       baseURL: 'http://localhost:3001/api',
+   });
+
+   export default api;
+   ```
+
+---
+
+### **Step 4: Running the Project**
+1. **Start Backend**:
+   ```bash
+   cd backend
+   npm run start
+   ```
+
+2. **Start Frontend**:
+   ```bash
+   cd ../frontend
+   npm run dev
+   ```
+
+3. Access your app in the browser at:
+   - Frontend: `http://localhost:3000`
+   - Backend: `http://localhost:3001`
+
+---
+
+This should set up your project’s foundation. Once you're ready, we can start integrating Google Maps API into your backend for geocoding, routing, and map rendering! Let me know when you're ready to proceed. 😊

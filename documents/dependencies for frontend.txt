@@ -1,0 +1,69 @@
+For your **Emergency Medical System project**, here’s what I recommend for each prompt during the Next.js setup, tailored to the project's requirements:
+
+---
+
+### **Prompts and Recommendations**
+
+#### **1. TypeScript**
+- **Recommendation**: **Yes (Optional)**  
+  - Reason: TypeScript provides type safety, which is helpful for larger projects like this. It can prevent bugs and improve maintainability, especially when working with APIs (like Google Maps) and dynamic data.  
+  - If you're not comfortable with TypeScript, you can say **No** and use JavaScript.
+
+---
+
+#### **2. ESLint**
+- **Recommendation**: **Yes**  
+  - Reason: Helps maintain consistent and clean code, especially useful when collaborating or working on long-term projects.
+
+---
+
+#### **3. Tailwind CSS**
+- **Recommendation**: **Yes**  
+  - Reason: Tailwind CSS simplifies styling and is perfect for quickly designing responsive, visually appealing interfaces like your form and map display.
+
+---
+
+#### **4. `src/` Directory**
+- **Recommendation**: **Yes**  
+  - Reason: Keeps your project well-organized by separating source code (`src/`) from configuration files. It's ideal for larger projects.
+
+---
+
+#### **5. Experimental `app/` Directory**
+- **Recommendation**: **No**  
+  - Reason: Stick with the stable `pages/` directory for routing to avoid potential issues with experimental features.
+
+---
+
+#### **6. Import Aliases**
+- **Recommendation**: **No**  
+  - Reason: The default alias (`@/*`) is sufficient for most use cases. You can still set up custom aliases later if needed.
+
+---
+
+### **Summary for This Project**
+| Prompt                                    | Suggested Response | Reason                                      |
+|-------------------------------------------|---------------------|---------------------------------------------|
+| TypeScript                                | **Yes (Optional)**  | Adds type safety for scalable development.  |
+| ESLint                                    | **Yes**             | Enforces consistent and clean code.         |
+| Tailwind CSS                              | **Yes**             | Simplifies and accelerates styling.         |
+| `src/` Directory                          | **Yes**             | Organizes the project for better structure. |
+| Experimental `app/` Directory             | **No**              | Stick with stable features for now.         |
+| Custom Import Alias                       | **No**              | Default alias is sufficient for most uses.  |
+
+---
+
+### Full Command for Setup
+If you want to avoid manual prompts, run the following command to configure everything as per the recommendations:
+```bash
+npx create-next-app@latest frontend --ts --eslint --tailwind --src-dir --no-app
+```
+- **`--ts`**: Enables TypeScript (remove if you prefer JavaScript).
+- **`--eslint`**: Installs and configures ESLint.
+- **`--tailwind`**: Adds Tailwind CSS for styling.
+- **`--src-dir`**: Enables the `src/` directory.
+- **`--no-app`**: Disables the experimental `app/` directory.
+
+---
+
+### Let me know if you'd like me to guide you through the Next.js setup or configuring Tailwind CSS specifically! 🚀
