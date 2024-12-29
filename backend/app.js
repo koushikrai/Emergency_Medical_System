@@ -4,7 +4,6 @@ const cors = require('cors');
 const logger = require('./logger/logger');
 const app = express();
 
-app.use('/api/auth', require('./routes/authRoutes'));
 // Middleware
 app.use(cors());
 app.use(express.json());

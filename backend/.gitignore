@@ -1,4 +1,7 @@
-.env
+
 # Ignore the MongoDB Compass connection file
 /config/compass-connection.json
 
+/node_modules
+
+env

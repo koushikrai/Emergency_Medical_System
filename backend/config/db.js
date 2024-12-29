@@ -1,10 +1,9 @@
-// config/db.js
 const mongoose = require('mongoose');
 require('dotenv').config(); // Load environment variables
 
 const connectDB = async () => {
   try {
-    const uri = process.env.MONGO_URI;  // Get URI from environment variable
+    const uri = process.env.MONGO_URI; // Get URI from environment variable
     await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

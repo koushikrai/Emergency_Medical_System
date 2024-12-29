@@ -19,7 +19,7 @@ async function handleEmergency(req, res, next) {
         const nearestHospital = hospitals[0];
 
         // Step 3: Get directions to the nearest hospital
-        const route = await getDirections(location, nearestHospital.place_id);
+        const route = await getDirections(location, nearestHospital.placeId);
 
         // Step 4: Respond with all information
         res.json({
@@ -27,8 +27,8 @@ async function handleEmergency(req, res, next) {
             emergencyLocation: location,
             nearestHospital: {
                 name: nearestHospital.name,
-                address: nearestHospital.vicinity,
-                location: nearestHospital.geometry.location,
+                address: nearestHospital.address,
+                location: nearestHospital.location,
             },
             route,
         });
