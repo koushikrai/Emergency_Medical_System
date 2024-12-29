@@ -25,6 +25,9 @@ emergency-medical-system/
     ├── src/                     # Source code
     │   ├── components/          # React components
     │   │   ├── EmergencyForm.jsx
+         |   ├── MapComponent.jsx        // For rendering the map and markers
+         │   ├── DirectionsMap.jsx       // For showing routes to hospitals
+         │   ├── DistanceCalculator.js
     │   │   ├── MapView.jsx
     │   ├── pages/               # Next.js pages
     │   │   ├── index.js         # Home page
@@ -32,7 +35,8 @@ emergency-medical-system/
     │   ├── styles/              # CSS or SCSS files
     │   │   ├── globals.css
     │   ├── utils/               # Utility functions/helpers
-    │   │   ├── api.js           # Axios or fetch functions for API calls
+             └── fetchUserLocation.js
+    │   │   ├── api.js           # Axios or fetch functions for API calls 
     │   ├── App.js               # Main React app file
     │   ├── index.js             # Entry point for React/Next.js
     ├── package.json             # Frontend dependencies

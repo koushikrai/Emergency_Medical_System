@@ -1,0 +1,9 @@
+API KEYS
+Maps javascript api :AIzaSyC-mlH4fJ4Ej4vS6AyCt2PNcWiNnsGMnoY
+geocoding api:AIzaSyC-mlH4fJ4Ej4vS6AyCt2PNcWiNnsGMnoY
+
+
+Geocoding API - for converting addresses into geographic coordinates.
+Places API - for finding nearby places (e.g., hospitals).
+Directions API - for calculating routes between locations.
+Maps JavaScript API (optional) - for rendering maps in your web application.

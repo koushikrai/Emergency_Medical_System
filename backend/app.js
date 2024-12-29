@@ -1,14 +1,17 @@
 const express = require('express');
+// const connectDB = require('./config/compass-connection.json');
 const cors = require('cors');
-const logger = require('../logger');
+const logger = require('./logger/logger');
 const app = express();
 
+app.use('/api/auth', require('./routes/authRoutes'));
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Routes
 app.use('/api/emergency', require('./routes/emergencyRoutes'));
+
 
 // Centralized Error-Handling Middleware
 app.use((err, req, res, next) => {

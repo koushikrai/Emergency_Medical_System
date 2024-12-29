@@ -27,6 +27,11 @@ const hospitalSchema = new mongoose.Schema({
         type: [String], // Optional: Array of services provided by the hospital
         default: [],
     },
+    placeId: {
+        type: String,
+        required: true, // Place ID is mandatory for unique identification
+        unique: true, // Ensure uniqueness to prevent duplicate hospitals
+    },
     createdAt: {
         type: Date,
         default: Date.now, // Automatically set the timestamp for when the hospital is added

@@ -1,0 +1,40 @@
+Emergency_Medical_System/
+├── backend/                     # Backend folder
+│   ├── controllers/
+│   │   ├── emergencyController.js
+│   ├── models/
+│   │   ├── Hospital.js
+│   ├── routes/
+│   │   ├── emergencyRoutes.js
+│   ├── services/
+│   │   ├── googleMapsService.js
+│   ├── app.js                   # Express app setup
+│   ├── server.js                # Backend server entry point
+│   ├── .env                     # Environment variables (API keys, DB URL)
+├── frontend/                    # Frontend folder
+│   ├── public/                  # Static assets (favicon, images, etc.)
+│   │   ├── assets/              # From the starter template
+│   │   │   ├── css/
+│   │   │   ├── js/
+│   │   │   ├── vendor/
+│   ├── src/
+│   │   ├── components/          # React components
+│   │   │   ├── AuthForm.jsx     # Signup and Signin form
+│   │   │   ├── EmergencyForm.jsx
+│   │   │   ├── MapComponent.jsx
+│   │   │   ├── DirectionsMap.jsx
+│   │   │   ├── MapView.jsx
+│   │   │   ├── Navbar.jsx       # Navigation bar from starter-page.html
+│   │   ├── pages/               # Next.js pages
+│   │   │   ├── _app.js
+│   │   │   ├── index.js         # Home page
+│   │   │   ├── emergency.js     # Emergency page
+│   │   │   ├── auth.js          # Authentication page
+│   │   ├── styles/              # Tailwind or custom CSS
+│   │   │   ├── globals.css
+│   │   ├── utils/               # Helper functions
+│   │   │   ├── api.js           # Axios configuration for backend calls
+│   │   │   ├── fetchUserLocation.js
+│   ├── .env.local               # Frontend environment variables
+│   ├── package.json
+│   ├── next.config.js           # Proxy configuration for backend

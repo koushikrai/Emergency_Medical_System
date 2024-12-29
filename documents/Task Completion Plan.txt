@@ -1,0 +1,6 @@
+Task Completion Plan
+
+Implement the backend authentication (authRoutes.js, authController.js, and User.js).
+Test EmergencyForm with the /api/emergency endpoint.
+Ensure dynamic map rendering in MapView works correctly.
+Test the responsive layout across devices.

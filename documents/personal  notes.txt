@@ -1,0 +1,52 @@
+*Maps and emergency system components are used to connect to integrate f and b
+*emergencyController.js
+-- information for the frontend to display:
+  emergencyLocation
+  route
+  nearestHospital
+
+here- frontend (EmergencyForm.jsx) is handling the response correctly by passing this data to the MapView and rendering the hospital details.
+
+--MapComponent.jsx and MapView.jsx both are responsible for displaying the user's location and the hospitals on the map also to show the map
+
+--we mpview receiving response from EmergencyForm.jsx by oassing response.emergencyLocation and response.route
+
+if not check this snippet:
+{response && (
+  <div className="mt-6 space-y-4">
+    <MapView emergencyLocation={response.emergencyLocation} route={response.route} />
+    <div className="p-4 bg-green-100 rounded-md">
+      <h3 className="text-lg font-bold text-green-800">
+        Nearest Hospital: {response.nearestHospital.name}
+      </h3>
+      <p className="text-gray-700">Address: {response.nearestHospital.address}</p>
+      <p className="text-gray-700">Route: Check the map above for directions.</p>
+    </div>
+  </div>
+)}
+# map renders the directions
+
+fetchUserLocation.js--fetching the user's location using the browser's geolocation API
+calculateDistance.js:-- You're using Google Maps' Distance Matrix API to calculate the nearest hospital(possiblerr- Ensure that the destinations array contains hospital locations in the correct format in below code snippet)
+code snippet:
+const calculateDistance = (origins, destinations) => {
+  const service = new google.maps.DistanceMatrixService();
+  return new Promise((resolve, reject) => {
+    service.getDistanceMatrix(
+      {
+        origins: [origins],
+        destinations,
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (response, status) => {
+        if (status === google.maps.DistanceMatrixStatus.OK) {
+          resolve(response.rows[0].elements);
+        } else {
+          reject(`Error with Distance Matrix API: ${status}`);
+        }
+      }
+    );
+  });
+};
+
+
